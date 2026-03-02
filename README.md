@@ -11,6 +11,7 @@ yarn dev
 # or
 pnpm dev
 # or
+OPENAI_KEY="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"
 bun dev
 ```
 
