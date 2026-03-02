@@ -13,7 +13,7 @@ import {
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { cn } from "@/lib/utils";
 
-export default function AudioRecorder() {
+export default function AudioRecorder({ mode }: { mode: "gemini" | "openai" }) {
   const [status, setStatus] = useState<"idle" | "recording" | "transcribing">(
     "idle",
   );
@@ -70,7 +70,7 @@ export default function AudioRecorder() {
     form.append("file", audioBlob, "recording.webm");
 
     try {
-      const res = await fetch("/api/transcribe", {
+      const res = await fetch(`/api/transcribe/${mode}`, {
         method: "POST",
         body: form,
       });
@@ -93,6 +93,13 @@ export default function AudioRecorder() {
 
   return (
     <div className="flex flex-col gap-6 w-full max-w-md p-6 border rounded-[2rem] bg-background shadow-xl">
+      <Alert variant="default" className="rounded-2xl py-2">
+        <AlertCircle className="h-4 w-4" />
+        <AlertDescription className="text-xs">
+          This using {mode} api
+        </AlertDescription>
+      </Alert>
+
       {error && (
         <Alert variant="destructive" className="rounded-2xl py-2">
           <AlertCircle className="h-4 w-4" />

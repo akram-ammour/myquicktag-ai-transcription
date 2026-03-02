@@ -6,8 +6,9 @@ export default function Home() {
       <h1 className="text-transparent bg-clip-text bg-linear-to-r from-purple-500 font-semibold to-emerald-700 text-3xl">
         Prototype 1
       </h1>
-      <div className="flex-1 h-full p-2 dark:text-white mt-4 border rounded-4xl">
-        <AudioRecorder />
+      <div className="flex-1 space-y-4 h-full p-2 dark:text-white mt-4 border rounded-4xl">
+        <AudioRecorder mode="gemini" />
+        <AudioRecorder mode="openai" />
       </div>
     </div>
   );

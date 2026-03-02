@@ -13,6 +13,12 @@ export async function POST(req: Request) {
   const transcription = await openai.audio.transcriptions.create({
     file: file,
     model: "whisper-1",
+    // ✅ Prompt here
+    prompt:
+      "Transcribe this audio file accurately. Return only the transcription text.",
+
+    // Optional:
+    temperature: 0, // more deterministic
   });
 
   return NextResponse.json({ text: transcription.text });
